@@ -1,0 +1,25 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: gray;
+    padding: 1rem;
+   
+
+}
+
+.buscador{
+    display: flex;
+    justify-content: flex-end;
+    height: 2rem;
+   
+}
+
+.rutasNav{
+    display: flex;
+    margin-left: 10rem;
+    width: 10%;
+    justify-content: space-between;
+    
+
+}
