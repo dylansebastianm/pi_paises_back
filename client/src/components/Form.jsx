@@ -6,9 +6,10 @@ function Form(){
         <div className="formContainer">
             <div className="formList">
                 <div className="form">
-                <label>Name of Activity:</label>
+                <label>Name:</label>
                 <input className="input"></input>
                 </div>
+                    
 
                 <div className="form">
                 <label>Duration:</label>
@@ -16,12 +17,12 @@ function Form(){
                 </div>
 
                 <div className="form">
-                <label>Dificulted:</label>
+                <label>Difficulty:</label>
                 <input className="input"></input>
                 </div>
 
                 <div className="form">
-                <label>Temporada:</label>
+                <label>Season:</label>
                 <input className="input"></input>
                 </div>
             </div>

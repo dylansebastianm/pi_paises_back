@@ -29,7 +29,7 @@ const {Country, Activity} = require("../db.js")
       return await Country.findAll({
         include: {
           model: Activity,
-          atrributes: ["name" ,"dificultad", "duracion", "temporada" ,"id"],
+          atrributes: ["name" ,"dificulted", "duration", "season" ,"id"],
           through: { attributes: []},
                 
         }})}

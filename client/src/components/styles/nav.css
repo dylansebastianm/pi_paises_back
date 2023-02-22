@@ -2,9 +2,16 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background-color: gray;
-    padding: 1rem;
+    background-color: #502d0ed3;
+    padding: 0.5rem;
    
+
+}
+
+
+.rutasNavContainer{
+  display: flex;
+  flex-direction: row;
 
 }
 
@@ -12,14 +19,32 @@
     display: flex;
     justify-content: flex-end;
     height: 2rem;
-   
+    width: 20rem;
+    border-radius: 0.4rem;
+    border: none;
 }
 
+
+.buscador:focus {
+    outline: none;
+    border: none;
+  }
+  
 .rutasNav{
-    display: flex;
-    margin-left: 10rem;
-    width: 10%;
-    justify-content: space-between;
+    margin-top: 0.2rem;
+    color: white;
+    cursor: pointer;
+    margin-left: 5rem;
+    width: 2%;
+    text-decoration: none;
     
+    
+}
+
+.rutasNav2{
+    margin-top: 0.2rem;
+    text-decoration: none;
+    color: white;
+    margin-left: 5rem;
 
 }

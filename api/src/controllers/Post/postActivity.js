@@ -28,7 +28,7 @@ router.post('/post', async (req, res) => {
       });
    
 
-        const countryForActivity = await Country.findAll({
+        const countryForActivity = await Country.findOne({
           where: {
             id: country,
           },
@@ -37,9 +37,9 @@ router.post('/post', async (req, res) => {
      
       
   
-      const mescla = await createActivity.addCountries(countryForActivity);
+      createActivity.addCountries(countryForActivity, {through: "country_activity"});
   
-      return res.send(mescla);
+      return res.status(200).send(countryForActivity);
     }
   
     const countryForActivity = await Country.findAll({
@@ -49,9 +49,9 @@ router.post('/post', async (req, res) => {
     });
 
   
-    const mescla = await valdidateact.addCountries(countryForActivity);
+    valdidateact.addCountries(countryForActivity, {through: "country_activity"});
   
-    res.send(mescla);
+    res.status(200).send(countryForActivity);
 
 
     

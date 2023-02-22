@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_ID } from './types';
+import { GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_ID, GET_COUNTRIES_NAME } from './types';
 import axios from "axios";
 
 export const getCountries =()=> {
@@ -34,9 +34,20 @@ export const getActivities =()=> {
 
 export const getCountryDetail =(id)=> {
     return async function(dispatch){
-        let json = await axios.get("http://localhost:3001/actividades" + id);
+        let json = await axios.get("http://localhost:3001/countries/" + id);
         return dispatch({
             type: GET_COUNTRIES_ID,
+            payload: json.data
+        })
+    }
+
+}
+
+export const getCountryName =(name)=> {
+    return async function(dispatch){
+        let json = await axios.get('http://localhost:3001/countries?name=' + name);
+        return dispatch({
+            type: GET_COUNTRIES_NAME,
             payload: json.data
         })
     }

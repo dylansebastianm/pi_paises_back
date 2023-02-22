@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/card.css"
 
 
@@ -8,19 +9,23 @@ Nombre
 Continente */
 
 
-function Card ({name, img, region, population}){
+function Card ({id, name, img, capital, continent, population}){
     return(
-    <div>
-            <div className="carta"> 
+    <div className="listCards">
+            <div className="carta "> 
                     <div className="imagenYtitulo">
                         <img className = "imagen" src = { img }  alt = 'No se encontro la imagen' />
                         <h4>{name}</h4> 
                     </div>
-                    <div>
-                    <p>{region} </p>
-                    <p>{population}</p>
-                </div>
-                <button>Information</button>
+
+                    <div className="infoCountryCard">
+                        <p>Capital: {capital} </p> 
+                        <p>Continent: {continent}</p>
+                        <p>Population: {population}</p>
+                    </div>
+                    <Link to ={`/countrydetail/${id}`} >
+                        <button className="buttonCard">Information</button>
+                    </Link>
             </div>
             
     </div>

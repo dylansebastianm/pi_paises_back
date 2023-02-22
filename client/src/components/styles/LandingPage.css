@@ -1,0 +1,52 @@
+.LandingBackground{
+    background-image: url("../assets/175465.jpg");
+    background-size: 100% 100%;
+    height: 39.1rem;
+    
+} 
+
+
+
+.tittleAndButton{
+    flex-direction: column;
+    height: 10rem;
+    text-align: center;
+    padding-top: 13rem;
+    margin-left: auto;
+    margin-right: auto;
+   
+
+    
+    
+}
+.tittle{
+    margin-right: auto;
+    margin-left: auto;
+    color: #502d0e;
+    cursor: pointer;
+    width: 30rem; 
+    border-color: #502d0e;
+
+
+}
+
+.button{
+    border-radius: 4rem;
+    border: 0.2px solid white;
+    padding: 1rem;
+    cursor: pointer;
+    height: 7rem;
+    width: 7rem;
+    margin-top: 0.4rem;
+    color: white;
+    background-color: #784212a2;
+
+    
+    
+
+}
+
+
+/* .button:hover{
+    transform: scale(1.1);
+} */
