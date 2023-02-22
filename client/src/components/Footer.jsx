@@ -10,11 +10,12 @@ function Footer (){
     return(
     <div className="footer">
         <div className="rutasFooterContainer">
-            <Link to ="" className = "">
+
+            <Link to ="" className = "rutasFooter">
             <div>About</div>
             </Link>
 
-            <Link to ="" className = "">
+            <Link to ="" className = "rutasFooter">
             <div>Linkedin</div>
             </Link>
             

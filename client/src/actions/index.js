@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_ID, GET_COUNTRIES_NAME } from './types';
+import { GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_ID, GET_COUNTRIES_NAME, POST_ACTIVITY } from './types';
 import axios from "axios";
 
 export const getCountries =()=> {
@@ -52,4 +52,15 @@ export const getCountryName =(name)=> {
         })
     }
 
+}
+
+export const postActivity =(payload)=> {
+    return async function(dispatch){
+        let json = await axios.post("http://localhost:3001/activity/post" , payload);
+        console.log("console.log" , json)
+        return dispatch({
+            type: POST_ACTIVITY,
+            payload: json.data
+        })
+    }
 }

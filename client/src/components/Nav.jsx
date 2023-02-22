@@ -11,15 +11,19 @@ function Nav (){
     <div className="nav">
         <div className="rutasNavContainer">
             <Link to ="/" className = "rutasNav">
-            <div>Landing</div>
+            <   div>Landing</div>
             </Link>
 
             <Link to ="/home" className = "rutasNav">
-            <div>Home</div>
+                <div>Home</div>
             </Link>
 
             <Link to ="/activities" className = "rutasNav">
-            <div>Activities</div>
+                <div>Activities</div>
+            </Link>
+
+            <Link to ="/createNewActivity" className = "rutasNav2">
+                <div>Create New Activity</div>
             </Link>
             
         </div>

@@ -34,13 +34,6 @@ function Form(){
                 season: event.target[3].value,
                 country: event.target[4].value,
             });
-
-            event.target[0].value = "";
-            event.target[1].value = "";
-            event.target[2].value = "";
-            event.target[3].value = "";
-            event.target[4].value = "";
-            
         })();
   
         
@@ -48,9 +41,8 @@ function Form(){
 
     return(
         <form onSubmit={(event) =>handleSubmit(event)}>
-            <div className="background">
             <div className="formContainer">
-                <div className="formList1">
+                <div className="formList">
 
                     <div className="form">
                     <label>Name:</label>
@@ -69,40 +61,29 @@ function Form(){
                     <div className="form">
                     <label>Difficulty:</label>
                     <input className="input" 
-                    type="number"
-                    max={5}
-                    min={1}
-
                     name="dificulted"/>
                     </div>
+
+                    <div className="form">
+                    <label>Season:</label>
+                    <input className="input" 
+                    name="season"
+                    />
+                    </div>
+
+                    <div className="form">
+                    <label>Country :</label>
+                    <input className="input" 
+                    name="countrySelected"/>
+                    </div>
+
                 </div>
 
-                <div className="formList2">
-                    <div>
-                        <div className="form">
-                        <label>Season:</label>
-                        <input className="input" 
-                        name="season"
-                        />
-                        </div>
-
-                        <div className="form">
-                        <label>Country :</label>
-                        <input className="input" 
-                        name="countrySelected"/>
-                        </div>
-
-                    <button 
+                <button 
                     className="buttonForm"
                     type="submit">
-                        ¡Send new activity!
-                    </button>
-
-                    </div>
-                </div>
-
-                
-            </div>
+                        Create
+                </button>
             </div>
         
         </form>
