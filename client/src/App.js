@@ -34,7 +34,7 @@ function App() {
          <Footer/>              
         </Route>
 
-        <Route path="/countrydetail/:id" >
+        <Route path="/countrydetail/:id" >  
           <Nav/>
           <CountryDetail/>
           <Footer/>      
