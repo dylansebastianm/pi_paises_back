@@ -15,9 +15,9 @@ function Footer (){
             <div>About</div>
             </Link>
 
-            <Link to ="" className = "rutasFooter">
+            <a href="https://www.linkedin.com/in/dylan-sebastian-03706316b/" className = "rutasFooter">
             <div>Linkedin</div>
-            </Link>
+            </a>
             
         </div>
 

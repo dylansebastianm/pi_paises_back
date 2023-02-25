@@ -1,6 +1,8 @@
 import React, { useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { postActivity } from "../actions/index.js";
+import { getCountryName } from "../actions/index.js";
+
 
     
 import "./styles/form.css"
@@ -32,7 +34,6 @@ function Form(){
                 duration: event.target[1].value,
                 dificulted: event.target[2].value,
                 season: event.target[3].value,
-                country: event.target[4].value,
             });
 
             event.target[0].value = "";
@@ -45,6 +46,35 @@ function Form(){
   
         
     }
+
+
+
+
+
+
+//---------------------BUSQUEDA PARA AGREGAR PAÍS
+
+const allCountries = useSelector(state => state.allCountries);
+const [countrySearch, setcountrySearch] = useState("")
+
+useEffect (()=>{
+    dispatch(getCountryName(countrySearch));
+   
+},[dispatch, countrySearch])
+
+
+
+const handleSubmit2 = (event) => {
+        console.log("console mio",event)
+        setFormValues({
+            country: event.target.checked
+        });
+        
+    
+    
+}
+
+
 
     return(
         <form onSubmit={(event) =>handleSubmit(event)}>
@@ -89,7 +119,11 @@ function Form(){
                         <div className="form">
                         <label>Country :</label>
                         <input className="input" 
-                        name="countrySelected"/>
+                        name="countrySelected"
+                        onChange={(event)=>handleSubmit(event)}
+                        />
+                            
+                        
                         </div>
 
                     <button 
@@ -104,7 +138,25 @@ function Form(){
                 
             </div>
             </div>
-        
+
+            <div className="countrySelected">
+                {allCountries.slice(0,4).map(e => {
+                    return(
+                        <div key={e.id}> 
+                            {e.name}  
+                            <img src={e.img} ></img>
+                            <input 
+                            type="checkbox" 
+                            value={e.id} 
+                            onClick={(event)=>handleSubmit2(event)}
+                            ></input>                     
+                        </div>
+                        
+                        
+                    )
+                  })}
+            </div>
+
         </form>
     )
 }

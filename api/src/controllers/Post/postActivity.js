@@ -39,7 +39,7 @@ router.post('/post', async (req, res) => {
   
       createActivity.addCountries(countryForActivity, {through: "country_activity"});
   
-      return res.status(200).send(countryForActivity);
+      return res.status(200).send(createActivity);
     }
   
     const countryForActivity = await Country.findAll({

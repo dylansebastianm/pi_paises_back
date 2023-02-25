@@ -2,7 +2,8 @@ import React, { useEffect} from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { getActivities } from "../actions/index.js";
 import {CardActivity} from "./CardActivity";
-import "./styles/cardList.css"
+/* import "./styles/activityList.css"/*  */
+ 
 
 function ActivityList(){
   const allActivities = useSelector(state => state.allActivities);
@@ -26,12 +27,11 @@ function ActivityList(){
                         <div>
                             <CardActivity 
                                 name ={e.name}
-                                id = {e.id}
                                 duration = {e.duration}
                                 season = {e.season}
                                 dificulted = {e.dificulted}
-                                countryId = {e.countryId}
-                           
+                                country = {e.countries[0].name}
+                                countryImg = {e.countries[0].img}                          
                             >
                             </CardActivity>
                         </div>

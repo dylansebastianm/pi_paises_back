@@ -2,5 +2,39 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.containerExtreme{
+    display: flex;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    flex-direction: column;
+}
+
+.paginated{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 3rem;
+    width: 65rem;
     
 }
+
+.buttonPaginated{
+
+    height: 2rem;
+    
+    width: 2rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #553213be;
+    color: white;
+    cursor: pointer;
+    margin-left: 0px;
+
+
+}
+
+.buttonPaginated:hover{
+    transform: scale(1.1);
+} 
