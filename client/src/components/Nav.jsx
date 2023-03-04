@@ -28,12 +28,12 @@ function Nav (){
             
         </div>
         
-        <div>
+       {/*  <div>
             <input className="buscador"
             placeholder="  Search country..">
 
             </input>
-        </div>
+        </div> */}
 
     </div>
     )

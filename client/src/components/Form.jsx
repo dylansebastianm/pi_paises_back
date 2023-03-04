@@ -1,164 +1,276 @@
-import React, { useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import { postActivity } from "../actions/index.js";
-import { getCountryName } from "../actions/index.js";
+    import React, { useEffect, useState} from "react";
+    import {useDispatch, useSelector} from "react-redux";
+    import { postActivity } from "../actions/index.js";
+    import { getCountryName } from "../actions/index.js";
 
 
-    
-import "./styles/form.css"
+        
+    import "./styles/form.css"
 
 
-function Form(){
-    const [formValues, setFormValues] = useState(
-        {
-            name: "",
-            dificulted: 0,
-            duration: 0,
-            season: "",
-            country: ""
-        }
-    )
+    function Form(){
+        const [formValues, setFormValues] = useState(
+            {
+                name: "",
+                dificulted: 0,
+                duration: 0,
+                season: "",
+                country: []
+            }
+        )
 
-    const dispatch = useDispatch();
+        const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(postActivity(formValues));
-      }, [formValues, dispatch]);
-    
+        useEffect(() => {
+            dispatch(postActivity(formValues));
+        }, [formValues, dispatch]);
+        
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        (function() {
+        const handleSubmit = (event) => {
+            event.preventDefault();
+           let valores={
+                name: event.target[0].value,
+                duration: event.target[1].value,
+                dificulted: event.target[2].value,
+                season: event.target[3].value,
+                country: selectedCountry.countries
+
+           }
+           console.log("name", nameValidation)
+           console.log("pais selected" ,formValues.country)
+
+
+           if(nameValidation.length > 4 && formValues.country.length !== -1){
+
+           
             setFormValues({
                 name: event.target[0].value,
                 duration: event.target[1].value,
                 dificulted: event.target[2].value,
                 season: event.target[3].value,
-            });
+                country: selectedCountry.countries,
 
+            })
+            
+            alert(
+                "Activity created successfully"
+            )
+        } else {
+            alert(
+                "All fields have to completed"
+            );
+          }  
+            console.log(valores)
             event.target[0].value = "";
-            event.target[1].value = "";
+            event.target[1].value = ""; 
             event.target[2].value = "";
             event.target[3].value = "";
             event.target[4].value = "";
+
+
+
+            setTimeout(() => {
+                window.location.href = `/home`
+                
+            }, 1000); 
             
-        })();
-  
+            
+            
+
+        }
+
+
+
+
+
+
+    //---------------------BUSQUEDA PARA AGREGAR PAÍS
+
+    const allCountries = useSelector(state => state.allCountries);
+    const [countrySearch, setcountrySearch] = useState("")
+
+    useEffect (()=>{
+        dispatch(getCountryName(countrySearch));
+    
+    },[dispatch, countrySearch])
+
+
+    const handleSubmit2 = (event) =>{
+        setcountrySearch(event.target.value)
         
     }
 
+/* -------ID SELECTED FOR POST OF ACTIVITY----------- */
 
+  const [selectedCountry, setSelectedCountry] = useState({
+    countries:[]
+  }
+  );
 
+  const handleCountryId = (event) => {
+  const countryId = event.target.value;
+  console.log(selectedCountry.countries)
+  setSelectedCountry({
+   countries: [...selectedCountry.countries, countryId]});
+}
 
-
-
-//---------------------BUSQUEDA PARA AGREGAR PAÍS
-
-const allCountries = useSelector(state => state.allCountries);
-const [countrySearch, setcountrySearch] = useState("")
-
-useEffect (()=>{
-    dispatch(getCountryName(countrySearch));
-   
-},[dispatch, countrySearch])
-
-
-
-const handleSubmit2 = (event) => {
-        console.log("console mio",event)
-        setFormValues({
-            country: event.target.checked
-        });
-        
-    
-    
+function sliceName(name){
+    const countrySlice = name.slice(0,10)
+    return countrySlice
 }
 
 
 
-    return(
-        <form onSubmit={(event) =>handleSubmit(event)}>
-            <div className="background">
-            <div className="formContainer">
-                <div className="formList1">
+/* ---------------VALIDACIÓN DE FORMULARIO--------------------- */
 
-                    <div className="form">
-                    <label>Name:</label>
-                    <input className="input"
-                    name="name"
-                    />
-                    </div>
-                        
+  const [nameValidation, setnameValidation] = useState("");
 
-                    <div className="form">
-                    <label>Duration:</label>
-                    <input className="input" 
-                    name="duration"/>
-                    </div>
 
-                    <div className="form">
-                    <label>Difficulty:</label>
-                    <input className="input" 
-                    type="number"
-                    max={5}
-                    min={1}
 
-                    name="dificulted"/>
-                    </div>
-                </div>
+return(
+    <form onSubmit={(event) =>handleSubmit(event)}>
+        <div className="background">
+            <div className="formContainerExtreme">
+                    <div className="formContainer">
+                        <div className="formList1">
 
-                <div className="formList2">
-                    <div>
-                        <div className="form">
-                        <label>Season:</label>
-                        <input className="input" 
-                        name="season"
-                        />
+                                <div className="form">
+                                    <strong>Name:</strong>
+                                    <p className="pForValidation">Must contain at least 3 letters</p>
+                                    <input
+                                    className={nameValidation.length < 4 && nameValidation !== "" ? "validationErrorInput" : "input"}
+                                    /* {nameValidation.length < 4 && nameValidation !== "" ? className="validationErrorInput" : className="input"}  */
+                                    placeholder="tennis, soccer, swimming..."
+                                    
+                                    name="name" 
+                                    value={nameValidation}
+                                    onChange={(event) => setnameValidation(event.target.value)}
+                                    
+                                    />
+                                    {nameValidation.length < 4 && nameValidation !== "" ? <p className="validationError">Name is not valid</p> : null}
+                                </div>
+                                    
+
+                                <div className="form">
+                                <strong>Duration:</strong>
+                                <p className="pForValidation">Hours between 1 and 6</p>
+                                <select 
+                                className="input" 
+                                name="duration"
+                                >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select>
+                                </div>
+
+                                <div className="form">
+                                <strong>Difficulty:</strong>
+                                <p className="pForValidation">Choose a level between between 1 and 4</p>
+                                <select
+                                className="input" 
+                                name="dificulted"
+                                /* value={selectForm}
+                                onChange={(event) => setselectForm(event.target.value)} */
+                                >
+                                   {/*  {!selectedValue && (
+                                    <option value="" disabled>
+                                    Selecciona una opción
+                                    </option>
+                                    )}  */}        
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                </select>
+                                
+                               
+                                </div>
                         </div>
 
-                        <div className="form">
-                        <label>Country :</label>
-                        <input className="input" 
-                        name="countrySelected"
-                        onChange={(event)=>handleSubmit(event)}
-                        />
+                        <div className="formList2">
+                                <div>
+                                    <div className="form">
+                                    <strong  >Season:</strong>
+                                    <p className="pForValidation">Choose the season</p>
+                                    <select 
+                                     className="input" 
+                                    name="season"
+                                    >
+                                        <option>Autumn</option>
+                                        <option>Winter</option>
+                                        <option>Summer</option>
+                                        <option>Spring</option>
+                                                                           
+                                    </select>
+                                    </div>
+
+                                    <div className="form">
+                                    <strong>Country :</strong>
+                                    <p className="pForValidation">Choose only one available country</p>
+                                    <input
+                                    placeholder="Search country"
+                                    className="input" 
+                                    name="countrySelected"
+                                    onChange={(event)=>handleSubmit2(event)}
+                                    />
+                                    
+{/*                                     {!allCountries.includes(countrySearch)  ?  <p className="validationError">No se encontro el pais</p> : null}
+ */}                                    
+                                </div>
+                                
+
+                                <button     
+                                className="buttonForm"
+                                type="submit">  
+                                      ¡Send new activity!  
+                                </button>
+
+                            </div>
+
                             
-                        
                         </div>
-
-                    <button 
-                    className="buttonForm"
-                    type="submit">
-                        ¡Send new activity!
-                    </button>
-
                     </div>
+
+                <div className="formContainer2">
+                                {allCountries.slice(0,6).map(e => {
+                                return(
+                                
+                                    <div 
+                                        className="aux"
+                                        key={e.id}>
+                                        <img src={e.img} 
+                                        className="imgCountrySelected"></img>
+                                        <p className="nameLarge">{sliceName(e.name)}</p>
+                                        
+
+                                        <input 
+                                        
+                                        type="checkbox" 
+                                        value={e.id} 
+                                        onClick={handleCountryId}
+                                        className="check"
+                                        ></input>                     
+                                    </div>
+                            
+                                 
+                                )
+                                })}
                 </div>
+
+            </div>
 
                 
-            </div>
-            </div>
+        </div>
 
-            <div className="countrySelected">
-                {allCountries.slice(0,4).map(e => {
-                    return(
-                        <div key={e.id}> 
-                            {e.name}  
-                            <img src={e.img} ></img>
-                            <input 
-                            type="checkbox" 
-                            value={e.id} 
-                            onClick={(event)=>handleSubmit2(event)}
-                            ></input>                     
-                        </div>
-                        
-                        
-                    )
-                  })}
-            </div>
+    </form>
+        )
+    }
 
-        </form>
-    )
-}
+    export {Form};
 
-export {Form};
+

@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_ID, GET_COUNTRIES_NAME, POST_ACTIVITY } from './types';
+import { FILTER_CONTINENT, FILTER_NAME, FILTER_POPULATION, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_ID, GET_COUNTRIES_NAME, POST_ACTIVITY } from './types';
 import axios from "axios";
 
 export const getCountries =()=> {
@@ -64,3 +64,28 @@ export const postActivity =(payload)=> {
         })
     }
 }
+
+
+
+export function filterContinent(payload) {
+    return {
+        type: FILTER_CONTINENT,
+        payload
+    }
+}
+
+export function filterName(payload) {
+    return {
+        type: FILTER_NAME,
+        payload
+    }
+}
+
+export function filterPopulation(payload) {
+    return {
+        type: FILTER_POPULATION,
+        payload
+    }
+}
+
+

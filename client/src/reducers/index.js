@@ -4,6 +4,9 @@ import {
     GET_ACTIVITIES,
     GET_COUNTRIES_NAME,
     POST_ACTIVITY,
+    FILTER_CONTINENT,
+    FILTER_NAME,
+    FILTER_POPULATION,
 } from "../actions/types";
 
 const initialState = {
@@ -51,6 +54,73 @@ const rootReducer = (state = initialState , action) => {
                 allActivities: action.payload,
                     
             }
+
+
+        case FILTER_CONTINENT:
+            const allCountries = state.countries;
+            const countryFilter = action.payload === 'All' ? allCountries : allCountries.filter(e => e.continent === action.payload)
+            return {
+                ...state,
+                allCountries: countryFilter,
+            }
+
+        case FILTER_NAME:
+                const orderName = action.payload === 'asc' ?
+                [...state.countries].sort(function(a, b) {
+                    if(a.name > b.name) {
+                        return 1;
+                    }
+                    if(b.name > a.name) {
+                        return -1;
+                    }
+                    return 0;
+                }) :
+                [...state.countries].sort(function(a, b) {
+                    if(a.name > b.name) {
+                        return -1;
+                    }
+                    if(b.name > a.name) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                return {
+                    ...state,
+                    allCountries: orderName
+                }
+
+
+
+
+        case FILTER_POPULATION:
+            const filterPopulation = action.payload === 'ascpop' ?
+            [...state.allCountries].sort(function(a, b) {
+                if(a.population < b.population) {
+                    return 1;
+                }
+                if(b.population < a.population) {
+                    return -1;
+                }
+                return 0;
+            }) :
+            [...state.allCountries].sort(function(a, b) {
+                if(a.population < b.population) {
+                    return -1;
+                }
+                if(b.population < a.population) {
+                    return 1;
+                }
+                return 0;
+            });
+            return {
+                ...state,
+                allCountries: filterPopulation
+            }    
+            
+            
+
+
+
             default: return{...state} 
          
 }}

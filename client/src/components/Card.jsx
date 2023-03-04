@@ -11,8 +11,9 @@ Continente */
 
 function Card ({id, name, img, capital, continent, population}){
     return(
-    <div className="listCards">
-            <div className="carta "> 
+        
+    <div className="listCards ">
+            <div className="carta front"> 
                     <div className="imagenYtitulo">
                         <img className = "imagen" src = { img }  alt = 'No se encontro la imagen' />
                         <h4>{name}</h4> 
@@ -27,8 +28,10 @@ function Card ({id, name, img, capital, continent, population}){
                         <button className="buttonCard">Information</button>
                     </Link>
             </div>
-            
+
+
     </div>
+   
     )
 
 }

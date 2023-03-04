@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { getCountries } from "../actions/index.js";
-import { getCountryName } from "../actions/index.js";
+import { getCountryName, filterContinent, filterPopulation, filterName} from "../actions/index.js";
 
 import Card from "./Card.jsx";
 import "./styles/cardList.css"
@@ -25,8 +25,12 @@ function CardList(){
         dispatch(getCountries());
        
     },[dispatch])
+  
+  
 
 
+
+/*   ----------FILTER BY NAME FOR SEARCHBAR---------------- */
     useEffect (()=>{
         dispatch(getCountryName(countrySearch));
        
@@ -58,9 +62,6 @@ function CardList(){
 
 
 
-
-
-
     const pageNumbers = [];
             
     for (let i = 1; i <= Math.ceil(allCountries.length / cardsPerPage); i++) {
@@ -69,8 +70,30 @@ function CardList(){
 
 
 
+/* ---------------FILTERS---------------- */
 
 
+
+
+const handleContinent = (e)=>{
+  console.log(e.target.value)
+  dispatch(filterContinent(e.target.value))
+}
+
+
+const handleName = (e) =>{
+  console.log(e.target.value)
+  
+    dispatch(filterName(e.target.value))
+  
+}
+
+const handlePopulation = (e) =>{
+  console.log(e.target.value)
+  
+    dispatch(filterPopulation(e.target.value))
+  
+}
 
 
 
@@ -112,7 +135,49 @@ function CardList(){
                 
                 
   
-    
+    <div className="countriesFilters">
+
+      <div className="filters">
+        <div>     
+          <select 
+          className ="select"
+          onChange={(e) => handleContinent(e)}>
+            <option value="" selected disabled >Filter by continent</option>
+            <option value='All' >All continents</option>
+            <option value='Africa' >Africa</option>
+            <option value='Americas' >America</option>
+            <option value='Europe' >Europe</option>
+            <option value='Oceania' >Oceania</option>
+            <option value='Asia' >Asia</option>
+          </select>
+        </div>
+
+        <div >
+          <select 
+          className ="select"
+          
+          onChange={(e) => handleName(e)}>
+            <option value="" selected disabled > Order alphabetically</option>
+            <option value="asc">Ascending names</option>
+            <option value="des">Descending names</option>
+          </select>
+        </div>
+
+        <div  >
+          <select 
+          className ="select"
+           
+          onChange={(e) => handlePopulation(e)}>
+            <option value="" selected disabled >Order by population</option>
+            <option value="ascpop">Higher population</option>
+            <option value="despop">Lower population</option>
+          </select>
+        </div>
+
+
+        
+      </div>
+
       <div className="containerExtreme">
         <div className="listCards">
           {currentCards.map((card) => (
@@ -120,6 +185,7 @@ function CardList(){
           ))}
           
         </div>
+
         <ul className="paginated">
           {pageNumbers.map((pageNumber) => (
             <div key={pageNumber} className="">
@@ -131,7 +197,9 @@ function CardList(){
             </div>
           ))}
         </ul>
+
       </div>
+  </div>
     
   
   
@@ -159,14 +227,6 @@ function CardList(){
                   })}
             </div> */}
 
-{/*             <div className="listCards">
-                <Paginated
-                    cards={currentCards}
-                    cardsPerPage={cardsPerPage}
-                    handlePageChange={handlePageChange}
-                    totalCards={allCountries.length}
-                />
-            </div> */}
 
         </div>
   

@@ -2,8 +2,8 @@ import React, { useEffect} from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { getActivities } from "../actions/index.js";
 import {CardActivity} from "./CardActivity";
-/* import "./styles/activityList.css"/*  */
- 
+/* import "./styles/activityList.css"
+ */ 
 
 function ActivityList(){
   const allActivities = useSelector(state => state.allActivities);

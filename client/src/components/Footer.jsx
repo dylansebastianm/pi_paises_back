@@ -11,9 +11,7 @@ function Footer (){
     <div className="footer">
         <div className="rutasFooterContainer">
 
-            <Link to ="" className = "rutasFooter">
-            <div>About</div>
-            </Link>
+  
 
             <a href="https://www.linkedin.com/in/dylan-sebastian-03706316b/" className = "rutasFooter">
             <div>Linkedin</div>
