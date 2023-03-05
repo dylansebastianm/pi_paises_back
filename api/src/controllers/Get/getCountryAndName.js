@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const {dbInfo} = require('../apiInfo');
 
-const {Country, Activity} = require("../.././db.js");
+const {Country, Activity} = require("../../db.js");
 
 
 const router = Router();
