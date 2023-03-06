@@ -12,7 +12,7 @@ const {
 });
  */
 
-const sequelize = new Sequelize(DB_DEPLOY, {
+const sequelize = new Sequelize(DB_DEPLOY, DB_USER, DB_PASSWORD, DB_HOST, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
