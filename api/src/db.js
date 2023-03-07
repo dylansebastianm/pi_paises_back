@@ -12,7 +12,7 @@ const {
 });
  */
 
-const sequelize = new Sequelize(DB_DEPLOY, DB_USER, DB_PASSWORD, {
+const sequelize = new Sequelize(DB_DEPLOY, {
   host: DB_HOST,
   dialect: 'postgres',
   logging: false, // set to console.log to see the raw SQL queries
